@@ -1,3 +1,4 @@
+/* @flow */
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 
@@ -50,7 +51,15 @@ const NavButton = styled.button`
   }
 `
 
-class User extends PureComponent {
+type UserStatus = USER_STATUSES.APPLIED | USER_STATUSES.INTERVIEWING | USER_STATUSES.HIRED
+
+type Props = {
+  changeUserStatus: () => any,
+  login: () => any,
+  hireStatus: UserStatus,
+}
+
+class User extends PureComponent<Props> {
   handleMoveNextClick = () => {
     const { hireStatus, login, changeUserStatus } = this.props
     const nextStatus = getNextStatus(hireStatus)
